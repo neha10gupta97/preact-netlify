@@ -29,12 +29,12 @@ function getBooksListing(data, isLoading) {
     const { data: books } = data;
     return (
       <>
-        {books.edges.map((blog) => (
+        {books.edges.map((book) => (
           <Link href={`/book/${book.id}`}>
             <article>
               <h2>{book.details.title}</h2>
               <div>
-                <span class={style.tag}>{books.details.author}</span>
+                <span class={style.tag}>{book.details.author}</span>
               </div>
             </article>
           </Link>
