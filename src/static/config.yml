@@ -4,16 +4,26 @@ backend:
 media_folder: src/assets
 public_folder: /assets
 collections:
-  - name: "pages"
-    label: "Pages"
-    label_singular: "Page" # Used in the UI, ie: "New Post"
-    folder: "content/blog"
+  - name: 'pages'
+    label: 'Pages'
+    label_singular: 'Page' # Used in the UI, ie: "New Post"
+    folder: 'content/blog'
     create: true
     fields:
-      - { label: "Title", name: "title", widget: "string"}
-      - { label: "Publish Date", name: "date", widget: "datetime" }
-      - { label: "Subtitle", name: "subtitle", widget: "string", required: false}
-      - { label: "Cover", name: "cover", widget: "image", required: false}
-      - { label: "Tags", name: "tags", widget: "string" }
-      - { label: "Body", name: "body", widget: "markdown"}
-
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Publish Date', name: 'date', widget: 'datetime' }
+      - { label: 'Subtitle', name: 'subtitle', widget: 'string', required: false }
+      - { label: 'Cover', name: 'cover', widget: 'image', required: false }
+      - { label: 'Tags', name: 'tags', widget: 'string' }
+      - { label: 'Body', name: 'body', widget: 'markdown' }
+  - name: 'books'
+    label: 'Books'
+    label_singular: 'Book' # Used in the UI, ie: "New Post"
+    folder: 'content/book'
+    create: true
+    fields:
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Author', name: 'author', widget: 'string' }
+      - { label: 'Publish Date', name: 'date', widget: 'datetime' }
+      - { label: 'Cover', name: 'cover', widget: 'image', required: false }
+      - { label: 'Body', name: 'body', widget: 'markdown' }
