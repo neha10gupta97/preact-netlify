@@ -4,6 +4,7 @@ const fs = require('fs');
 const parseMD = require('parse-md').default;
 
 const [blogs] = generateFileList(join(__dirname, 'content')).nodes;
+console.log(blogs);
 const [books] = generateFileList(join(__dirname, 'content')).nodes;
 
 module.exports = () => {
@@ -47,33 +48,33 @@ module.exports = () => {
     })
   );
 
-  pages.push({
-    url: '/books/',
-    data: books,
-  });
+  //   pages.push({
+  //     url: '/books/',
+  //     data: books,
+  //   });
 
-  // adding all blog pages
-  pages.push(
-    ...books.edges.map((book) => {
-      let data;
-      if (book.format === 'md') {
-        const { content } = parseMD(fs.readFileSync(join('content', 'book', book.id), 'utf-8'));
-        data = content;
-      } else {
-        data = fs
-          .readFileSync(join('content', 'book', book.id), 'utf-8')
-          .replace(/---(.*(\r)?\n)*---/, '');
-      }
-      return {
-        url: `/book/${book.id}`,
-        seo: book.details,
-        data: {
-          details: book.details,
-          content: data,
-        },
-      };
-    })
-  );
+  //   // adding all blog pages
+  //   pages.push(
+  //     ...books.edges.map((book) => {
+  //       let data;
+  //       if (book.format === 'md') {
+  //         const { content } = parseMD(fs.readFileSync(join('content', 'book', book.id), 'utf-8'));
+  //         data = content;
+  //       } else {
+  //         data = fs
+  //           .readFileSync(join('content', 'book', book.id), 'utf-8')
+  //           .replace(/---(.*(\r)?\n)*---/, '');
+  //       }
+  //       return {
+  //         url: `/book/${book.id}`,
+  //         seo: book.details,
+  //         data: {
+  //           details: book.details,
+  //           content: data,
+  //         },
+  //       };
+  //     })
+  //   );
 
   return pages;
 };
