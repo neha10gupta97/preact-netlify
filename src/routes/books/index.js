@@ -3,17 +3,18 @@ import { Link } from 'preact-router';
 import { usePrerenderData } from '@preact/prerender-data-provider';
 import style from './style';
 
-const blogs = (props) => {
+const books = (props) => {
+  console.log(props);
   const [data, isLoading] = usePrerenderData(props);
   return (
     <div class={style.pageBlogs}>
-      <h1 class={style.pageTitle}>My Blogs</h1>
-      {getBlogsListing(data, isLoading)}
+      <h1 class={style.pageTitle}>My Books</h1>
+      {getBooksListing(data, isLoading)}
     </div>
   );
 };
 
-function getBlogsListing(data, isLoading) {
+function getBooksListing(data, isLoading) {
   if (isLoading) {
     return (
       <article class={style.loadingPlaceholder}>
@@ -25,21 +26,16 @@ function getBlogsListing(data, isLoading) {
     );
   }
   if (data && data.data) {
-    const { data: blogs } = data;
+    const { data: books } = data;
     return (
       <>
-        {blogs.edges.map((blog) => (
-          <Link href={`/blog/${blog.id}`}>
+        {books.edges.map((blog) => (
+          <Link href={`/book/${book.id}`}>
             <article>
-              <h2>{blog.details.title}</h2>
+              <h2>{book.details.title}</h2>
               <div>
-                {(blog.details.tags.substr(1, blog.details.tags.length - 2).split(',') || []).map(
-                  (tag) => (
-                    <span class={style.tag}>{tag}</span>
-                  )
-                )}
+                <span class={style.tag}>{books.details.author}</span>
               </div>
-              <p class={style.preview}>{blog.preview}</p>
             </article>
           </Link>
         ))}
@@ -48,4 +44,4 @@ function getBlogsListing(data, isLoading) {
   }
 }
 
-export default blogs;
+export default books;
